@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Predict Tomato Disease</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+
+  <!-- Favicons -->
+  <link href="static/img/tom.jpg" rel="icon">
+  <link href="static/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Favicons -->
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&family=Marcellus:wght@400&display=swap" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="static/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="static/vendor/aos/aos.css" rel="stylesheet">
+  <link href="static/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+  <link href="static/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+
+  <!-- Main CSS File -->
+  <link href="static/css/main.css" rel="stylesheet">
+</head>
+
+<body class="predict-page">
+
+  <header id="header" class="header d-flex align-items-center position-relative">
+    <div class="container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
+      <a href="index.html" class="logo d-flex align-items-center">
+        <img src="static/img/logo.png" alt="AgriCulture">
+      </a>
+
+      <nav id="navmenu" class="navmenu">
+        <ul>
+          <li><a href="/" >Home</a></li>
+          <li><a href="/about">About Us</a></li>
+          <li><a href="/predict" class="active">Predict</a></li>
+          <li><a href="/contact">Contact</a></li>
+        </ul>
+        <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+      </nav>
+    </div>
+  </header>
+
+  <div class="page-title dark-background" data-aos="fade" style="background-image: url(static/img/page-title-bg.webp);">
+    <div class="container position-relative">
+      <h1>Predict Tomato Disease</h1>
+      <p>Upload an image of your tomato plant leaf to get disease predictions.</p>
+    </div>
+  </div><!-- End Page Title -->
+
+  <section id="predict" class="predict section">
+    <div class="container" data-aos="fade">
+      <div class="row justify-content-center">
+        <div class="col-lg-6">
+          <form id="upload-form" enctype="multipart/form-data" method="POST" action="/predict">
+            <div class="mb-3">
+              <label for="imageUpload" class="form-label">Upload Image</label>
+              <input type="file" class="form-control" id="imageUpload" name="image" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Predict Disease</button>
+          </form>
+          {% if disease %}
+
+          <div class="mt-4">
+              <h3>Uploaded Image</h3>
+              <img src={{image_url}} alt="Uploaded Image" class="img-fluid">
+            </div>
+
+          <div id="prediction-result" class="mt-4">
+
+            <h2>Prediction Result</h2>
+              <p>Based on the image given as input, the AI model has predicted that there is a high possibility for your plant to have <strong>{{ disease }}</strong>.</p>
+              <h3>Steps to Counter the Disease</h3>
+              <ul style="list-style-type: none; padding: 0;">
+                {% for step in steps.split(". ") %}
+                <li style="margin: 5px 0;">• {{ step.strip() }}</li>
+                {% endfor %}
+              </ul>
+            </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </section><!-- /Predict Section -->
+
+  <script src="static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="static/vendor/aos/aos.js"></script>
+  <script src="static/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="static/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="static/js/main.js"></script>
+  <script>
+    AOS.init();
+  </script>
+</body>
+
+</html>

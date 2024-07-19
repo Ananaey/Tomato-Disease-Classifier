@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Prediction Result</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800&family=Marcellus:wght@400&display=swap" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="static/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="static/vendor/aos/aos.css" rel="stylesheet">
+  <link href="static/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+  <link href="static/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+
+  <!-- Main CSS File -->
+  <link href="static/css/main.css" rel="stylesheet">
+  <style>
+    ul.steps-list {
+      padding-left: 300px;
+      padding-right:300px;
+      list-style-type: disc;
+    }
+    ul.steps-list li {
+      margin: 0;
+      padding: 0;
+      line-height: 2; /* Adjust line height if needed */
+    }
+    ul.steps-list li::marker {
+      padding-right: 5px; /* Adjust padding to reduce space between bullet and text */
+    }
+  </style>
+</head>
+
+<body class="result-page">
+  <header id="header" class="header d-flex align-items-center position-relative">
+    <div class="container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
+      <a href="index.html" class="logo d-flex align-items-center">
+        <img src="static/img/logo.png" alt="AgriCulture">
+      </a>
+
+      <nav id="navmenu" class="navmenu">
+        <ul>
+          <li><a href="/" >Home</a></li>
+          <li><a href="/about">About Us</a></li>
+          <li><a href="/predict" class="active">Predict</a></li>
+          <li><a href="/contact">Contact</a></li>
+        </ul>
+        <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+      </nav>
+    </div>
+  </header>
+
+  <div class="page-title dark-background" data-aos="fade" style="background-image: url('static/img/page-title-bg.webp');">
+    <div class="container position-relative">
+      <h1>Prediction Result</h1>
+    </div>
+  </div><!-- End Page Title -->
+
+  <section id="result" class="result section">
+    <div class="container" data-aos="fade">
+      <div class="row justify-content-center">
+        <div class="col-lg-8 text-center">
+          <h2>Prediction Result</h2>
+          <p>Based on the image given as input, the AI model has predicted that there is a high possibility for your plant to have:</p>
+          <h3>{{ disease }}</h3>
+          <img src="{{ image_url }}" alt="Uploaded Image" class="img-fluid mt-4">
+          <div class="mt-4">
+            <h4>Steps to Counter the Disease:</h4>
+            <ul class="steps-list">
+              {% for step in steps.split(". ") %}
+                <li>{{ step }}</li>
+              {% endfor %}
+            </ul>
+          </div>
+          <a href="/predict" class="btn btn-primary mt-4">Predict Another Image</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script src="static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="static/vendor/aos/aos.js"></script>
+  <script src="static/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="static/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="static/js/main.js"></script>
+  <script>
+    AOS.init();
+  </script>
+</body>
+</html>
